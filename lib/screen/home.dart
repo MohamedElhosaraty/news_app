@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/modeis/news-models.dart';
 import 'package:news_app/repository/news_repository.dart';
+import 'package:news_app/screen/article.dart';
 
 class Home_Screen extends StatefulWidget {
   const Home_Screen({super.key});
@@ -22,7 +23,9 @@ class _Home_ScreenState extends State<Home_Screen> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async{
-        newsBusiness = News_repository().getTopNews();
+        setState(() {
+          newsBusiness = News_repository().getTopNews();
+        });
       },
       child: Scaffold(
         appBar: AppBar(
@@ -54,6 +57,11 @@ class _Home_ScreenState extends State<Home_Screen> {
                   return Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: ListTile(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return Article_Screen(articleItem: item,);
+                        },));
+                      },
                       trailing: Container(
                         width: 100,
                         height: 100,
@@ -71,7 +79,8 @@ class _Home_ScreenState extends State<Home_Screen> {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                       ),
-                      subtitle: Text(item.source?.name ?? 'empty Description',
+                      subtitle: Text(
+                          item.source?.name ?? 'empty Description',
                           maxLines: 3, overflow: TextOverflow.ellipsis),
 
                     ),
