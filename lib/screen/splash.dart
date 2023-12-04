@@ -36,10 +36,6 @@ class _Splash_ScreenState extends State<Splash_Screen> {
           ],
           isRepeatingAnimation: true,
         ),
-        // child: Text(
-        //   'News',style: TextStyle(
-        //   fontSize: 65,fontWeight: FontWeight.w600,color: Color(0xff2D5BD0)
-        // ),),
       ),
     );
   }
