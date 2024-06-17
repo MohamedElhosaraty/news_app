@@ -5,8 +5,11 @@ class News_repository {
 
   final _dio =Dio();
 
+   // ToDo : used to  bloc cubit
+  //ToDo : bloc state
   Future<Temperatures> getTopNews () async{
-    final res = await _dio.get('https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=5a7ad4ceab9e462996901c363ec955ad');
+    final res = await _dio.get(
+        'https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=5a7ad4ceab9e462996901c363ec955ad');
     final data = Temperatures.fromJson(res.data);
     return data;
   }
